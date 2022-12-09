@@ -12,30 +12,47 @@ Q4. What makes the first argument in a class’s method function special?
 - The calling process is automatic while the receiving process is not (its explicit). This is the reason the first parameter of a function in class must be the object itself. Writing this parameter as self is merely a convention. It is not a keyword and has no special meaning in Python.
 
 Q5. What is the purpose of the init method?
+- The __init__ method lets the class initialize the object's attributes and serves no other purpose. It is only used within classes.
 
 Q6. What is the process for creating a class instance?
+- To create instances of a class, we call the class using class name and pass in whatever arguments its __init__ method accepts.
 
 Q7. What is the process for creating a class?
+- In Python, a class can be created by using the keyword class, followed by the class name.
+e.g class ClassName:    
+    #statement_suite
 
 Q8. How would you define the superclasses of a class?
+- A superclass is the class from which many subclasses can be created. The subclasses inherit the characteristics of a superclass. The superclass is also known as the parent class or base class.
 
 Q9. What is the relationship between classes and modules?
+- Modules are collections of methods and constants. They cannot generate instances. A module in python is simply a way to organize the code, and it contains either python classes or just functions. 
+Classes may generate instances (objects).
 
 Q10. How do you make instances and classes?
+- In python a class is created by the keyword class.
+To create instances of a class, we call the class using class name and pass in whatever arguments its __init__ method accepts.
 
 Q11. Where and how should be class attributes created?
+- A class attribute is shared by all instances of the class. To define a class attribute, you place it outside of the __init__() method.
 
 Q12. Where and how are instance attributes created?
+- We add instance attributes usually by defining the constructor method “__init__”. Within __init__ we pass the first parameters self which represents an object from a class that is currently being defined, and usually, we attach instance attributes to these objects using the dot operator.
 
 Q13. What does the term "self" in a Python class mean?
+- The self parameter is a reference to the current instance of the class, and is used to access variables that belongs to the class.
 
 Q14. How does a Python class handle operator overloading?
+- The operator overloading in Python means provide extended meaning beyond their predefined operational meaning. We use the "+" operator for adding two integers as well as joining two strings or merging two lists. We can achieve this as the "+" operator is overloaded by the "int" class and "str" class.
 
 Q15. When do you consider allowing operator overloading of your classes?
+- The operator overloading in Python means provide extended meaning beyond their predefined operational meaning.
 
 Q16. What is the most popular form of operator overloading?
+- A very popular and convenient example is the Addition (+) operator. Just think how the '+' operator operates on two numbers and the same operator operates on two strings. It performs “Addition” on numbers whereas it performs “Concatenation” on strings.
 
 Q17. What are the two most important concepts to grasp in order to comprehend Python OOP code?
+- Both inheritance and polymorphism are fundamental concepts of object oriented programming. These concepts help us to create code that can be extended and easily maintainable.
 
 Q18. Describe three applications for exception processing.
 
