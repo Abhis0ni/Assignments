@@ -20,7 +20,7 @@ Q6. What is the process for creating a class instance?
 Q7. What is the process for creating a class?
 - In Python, a class can be created by using the keyword class, followed by the class name.
 e.g class ClassName:    
-    #statement_suite
+    #statement
 
 Q8. How would you define the superclasses of a class?
 - A superclass is the class from which many subclasses can be created. The subclasses inherit the characteristics of a superclass. The superclass is also known as the parent class or base class.
