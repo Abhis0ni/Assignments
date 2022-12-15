@@ -57,37 +57,74 @@ Q17. What are the two most important concepts to grasp in order to comprehend Py
 Q18. Describe three applications for exception processing.
 
 Q19. What happens if you don't do something extra to treat an exception?
+- When an exception occurred, if you don't handle it, the program terminates abruptly and the code past the line that caused the exception will not get executed.
 
 Q20. What are your options for recovering from an exception in your script?
+- You can also provide a generic except clause, which handles any exception. After the except clause(s), you can include an else-clause. The code in the else-block executes if the code in the try: block does not raise an exception. The else-block is a good place for code that does not need the try: block's protection.
 
 Q21. Describe two methods for triggering exceptions in your script.
+- There are two methods to handle Python exceptions: Try – This method catches the exceptions raised by the program. Raise – Triggers an exception manually using custom exceptions.
 
 Q22. Identify two methods for specifying actions to be executed at termination time, regardless of  
 whether or not an exception exists.
+- Finally block always executes irrespective of an exception being thrown or not. The final keyword allows you to create a block of code that follows a try-catch block. Finally, clause is optional.
 
 Q23. What is the purpose of the try statement?
+- The try block is used to check some code for errors i.e the code inside the try block will execute when there is no error in the program.
 
 Q24. What are the two most popular try statement variations?
+- There are two other optional segments to a try block: else and finally . Both of these optional blocks will come after the try and the except .
 
 Q25. What is the purpose of the raise statement?
+- Python raise Keyword is used to raise exceptions or errors. The raise keyword raises an error and stops the control flow of the program.
 
 Q26. What does the assert statement do, and what other statement is it like?
+- The assert keyword is used when debugging code. The assert keyword lets you test if a condition in your code returns True, if not, the program will raise an AssertionError.
 
 Q27. What is the purpose of the with/as argument, and what other statement is it like?
+- In Python, with statement is used in exception handling to make the code cleaner and much more readable. It simplifies the management of common resources like file streams.
 
 Q28. What are *args, **kwargs?
+- Both Python *args and **kwargs let you pass a variable number of arguments into a function. *args arguments have no keywords whereas **kwargs arguments each are associated with a keyword.
 
 Q29. How can I pass optional or keyword parameters from one function to another?
+- The user can call the function by either passing those optional parameters or just passing the required parameters.
+# Here b is predefined and hence is optional.
+def func(a, b=1098):
+    return a+b 
+print(func(2, 2)) 
+# this 1 is represented as 'a' in the function and
+# function uses the default value of b
+print(func(1))
 
 Q30. What are Lambda Functions?
+- Python Lambda Functions are anonymous function means that the function is without a name. As we already know that the def keyword is used to define a normal function in Python. Similarly, the lambda keyword is used to define an anonymous function in Python.
 
 Q31. Explain Inheritance in Python with an example?
+- Inheritance is a mechanism in which one class acquires the property of another class. For example, a child inherits the traits of his/her parents. With inheritance, we can reuse the fields and methods of the existing class. Hence, inheritance facilitates Reusability and is an important concept of OOPs.
 
 Q32. Suppose class C inherits from classes A and B as class C(A,B).Classes A and B both have their own versions of method func(). If we call func() from an object of 
 class C, which version gets invoked?
+- It will return results from class A since it is considered first in statement class C(A,B).
+class xyz:
+    def test(self):
+        print("This is a test meth from xyz")
+
+class xyz1:
+    def test(self):
+        print("This is a test1 meth from xyz1")
+
+class child(xyz,xyz1):  
+    pass
+ch = child()
+ch.test() # by default child class will show results from 1st class only
+
 
 Q33. Which methods/functions do we use to determine the type of instance and inheritance?
+- isinstance() and issubclass() The isinstance() method checks whether an object is an instance of a class whereas issubclass() method asks whether one class is a subclass of another class (or other classes).
 
 Q34.Explain the use of the 'nonlocal' keyword in Python.
+- The nonlocal keyword is used to work with variables inside nested functions, where the variable should not belong to the inner function. Use the keyword nonlocal to declare that the variable is not local.
 
 Q35. What is the global keyword?
+- In Python, the global keyword allows us to modify the variable outside of the current scope. It is used to create a global variable and make changes to the variable in a local context.
