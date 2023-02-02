@@ -16,9 +16,9 @@
 
 9) Select (count(CITY) - count(distinct CITY)) as Diff from STATION;
 
-10) Select CITY,length(CITY) as "City_length" from STATION order by length(CITY) asc,CITY asc limit 1 
+10) Select CITY,length(CITY) as City_length from STATION order by length(CITY) asc,CITY asc limit 1 
     union all 
-    Select CITY,length(CITY) as "City_length" from STATION order by length(CITY) desc,CITY asc limit 1;
+    Select CITY,length(CITY) as City_length from STATION order by length(CITY) desc,CITY asc limit 1;
     
 11) Select distinct CITY from STATION where Left(CITY,1) in ('a','e','i','o','u');
 
@@ -38,15 +38,15 @@
     
 18) Select distinct auther_id as id from Views where auther_id=viewer_id order by auther_id;
 
-19) Select (count(*)/(Select count(*) from Delivery)*100) as "Immediate_percentage" from Delivery where order_date=customer_pref_delivery_date;
+19) Select (count(*)/(Select count(*) from Delivery)*100) as Immediate_percentage from Delivery where order_date=customer_pref_delivery_date;
 
 20) Select distinct ad_id, (case when Clicked+Viewed=0 then 0 else (Clicked/(Clicked+Viewed))*100 end) as CTR 
-    (Select ad_id,(Select count(*) from Ads where action='Clicked' and ad_id=A.ad_id) as "Clicked",
+    (Select ad_id,(Select count(*) from Ads where action='Clicked' and ad_id=A.ad_id) as Clicked,
     (Select count(*) from Ads where action='Viewed' and ad_id=A.ad_id) as "Viewed" from Ads A);
     
 21) Select employee_id,(Select count(*) from Employee where team_id=E.team_id) as team_size from Employee E;
 
-22) Select C.country_name,(case when Avg(W.weather_state)<=15 then 'Cold' else case when Avg(W.weather_state)>=25 then 'Hot' else 'Warm' end end)weather_type from countries C 
+22) Select C.country_name,(case when Avg(W.weather_state)<=15 then 'Cold' else case when Avg(W.weather_state)>=25 then 'Hot' else 'Warm' end end) as weather_type from countries C 
     inner join Weather W on C.country_id=W.country_id
     where Month(W.day)=11
     group by C.country_name;
