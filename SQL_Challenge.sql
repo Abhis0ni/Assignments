@@ -50,3 +50,5 @@
     inner join Weather W on C.country_id=W.country_id
     where Month(W.day)=11
     group by C.country_name;
+
+23) 
