@@ -26,11 +26,11 @@ CREATE TABLE SALES_ORDER_CSV
      fields terminated by ','
      stored as textfile
      tblproperties ("skip.header.line.count"="1");
-
+---------------------------------------------------------------------
 2) Load Data to sales_order_csv table
 
 LOAD DATA INPATH '/user/input/sales_order_data.csv' INTO TABLE sales_order_csv;
-
+---------------------------------------------------------------------
 3) Create ORC table
 
 create table sales_order_orc
@@ -56,17 +56,20 @@ create table sales_order_orc
      CONTACTFIRSTNAME STRING,
      DEALSIZE STRING)
      stored as ORC;
-     
+---------------------------------------------------------------------     
 4) Load data from sales_order_csv to sales_order_orc table
 
 insert overwrite table sales_order_orc select * from sales_order_csv;
+---------------------------------------------------------------------
 
 a. Calculatye total sales per year
 SELECT YEAR_ID,SUM(SALES) AS TOTAL_SALES FROM SALES_ORDER_ORC GROUP BY YEAR_ID;
+
 o/p : 
 2003    3516979.540000001
 2004    4724162.599999997
 2005    1791486.71
+---------------------------------------------------------------------
 
 b. Find a product for which maximum orders were placed
 select PRODUCTCODE, count(*) as cnt
@@ -74,9 +77,11 @@ from SALES_ORDER_ORC
 group by PRODUCTCODE 
 order by cnt desc
 limit 1;
+
 o/p :
 productcode     cnt
 S18_3232        52
+---------------------------------------------------------------------
 
 c. Calculate the total sales for each quarter
 SELECT SUM(A.SALES) AS TOTAL_SALES,A.YEAR_ID,A.QUARTER 
@@ -89,6 +94,7 @@ WHEN MONTH_ID BETWEEN 10 AND 12 THEN "Q4"
 END AS QUARTER FROM SALES_ORDER_ORC
 ) A
 GROUP BY A.YEAR_ID,A.QUARTER;
+
 o/p :
 total_sales     a.year_id       a.quarter
 445094.6900000002       2003    Q1
@@ -101,6 +107,7 @@ total_sales     a.year_id       a.quarter
 2014774.9199999995      2004    Q4
 1071992.3600000003      2005    Q1
 719494.3500000001       2005    Q2
+---------------------------------------------------------------------
 
 d. In which quarter sales was minimum
 SELECT SUM(A.SALES) AS TOTAL_SALES,A.YEAR_ID,A.QUARTER 
@@ -115,9 +122,11 @@ END AS QUARTER FROM SALES_ORDER_ORC
 GROUP BY A.YEAR_ID,A.QUARTER
 ORDER BY TOTAL_SALES ASC
 LIMIT 1;
+
 o/p :
 total_sales     a.year_id       a.quarter
 445094.6900000002       2003    Q1
+---------------------------------------------------------------------
 
 e. In which country sales was maximum and in which country sales was minimum
 SELECT * 
@@ -137,6 +146,7 @@ o/p :
 _u1._c0 _u1.total_sales _u1.country
 MAX     3627982.83      USA
 MIN     57756.43        Ireland
+---------------------------------------------------------------------
 
 f. Calculate quartelry sales for each city
 SELECT SUM(A.SALES) AS TOTAL_SALES,A.YEAR_ID,A.QUARTER,A.CITY
@@ -157,6 +167,7 @@ SELECT ROW_NUMBER() OVER (PARTITION BY YEAR_ID ORDER BY SUM(QUANTITYORDERED) DES
 GROUP BY MONTH_ID,YEAR_ID 
 ) A
 WHERE RN=1;
+
 o/p :
 qty_ord month_id        year_id
 10179   11      2003
