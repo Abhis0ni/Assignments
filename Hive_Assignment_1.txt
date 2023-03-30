@@ -1,4 +1,4 @@
-**1) Create internal table**
+1) Create internal table
 
 CREATE TABLE SALES_ORDER_CSV
      (ORDERNUMBER int,
@@ -27,4 +27,39 @@ CREATE TABLE SALES_ORDER_CSV
      stored as textfile
      tblproperties ("skip.header.line.count"="1");
 
-2)
+2) Load Data to sales_order_csv table
+
+LOAD DATA INPATH '/user/input/sales_order_data.csv' INTO TABLE sales_order_csv;
+
+3) Create ORC table
+
+create table sales_order_orc
+     (ORDERNUMBER int,
+     QUANTITYORDERED INT,
+     PRICEEACH DOUBLE,
+     ORDERLINENUMBER INT,
+     SALES DOUBLE,
+     STATUS STRING,
+     QTR_ID INT,
+     MONTH_ID INT,
+     YEAR_ID INT,
+     PRODUCTLINE STRING,
+     MSRP INT,
+     PRODUCTCODE STRING,
+     PHONE STRING,
+     CITY STRING,
+     STATE STRING,
+     POSTALCODE STRING,
+     COUNTRY STRING,
+     TERRITORY STRING,
+     CONTACTLASTNAME STRING,
+     CONTACTFIRSTNAME STRING,
+     DEALSIZE STRING)
+     stored as ORC;
+     
+4) Load data from sales_order_csv to sales_order_orc table
+
+insert overwrite table sales_order_orc select * from sales_order_csv;
+
+
+
