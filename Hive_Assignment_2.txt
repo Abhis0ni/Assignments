@@ -1,7 +1,5 @@
 
-
-
-Scenario Based questions:
+Scenario Based questions: 
 
 1)Will the reducer work or not if you use “Limit 1” in any HiveQL query?
 Answer: No, as no aggregations are done
