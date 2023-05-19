@@ -54,19 +54,16 @@ select AVG_RATING,A_NAME from AGNT_PERFORMANCE WHERE AVG_RATING<3.5;
 select AVG_RATING,A_NAME from AGNT_PERFORMANCE WHERE AVG_RATING>4.5;
 
 11. How many feedback agents have received more than 4.5 average
-select COUNT(TOTAL_FEED),A_NAME from AGNT_PERFORMANCE WHERE AVG_RATING<3.5 GROUP BY A_NAME;
+select COUNT(TOTAL_FEED),A_NAME from AGNT_PERFORMANCE WHERE AVG_RATING>4.5 GROUP BY A_NAME;
 
 12. average weekly response time for each agent 
-select agent name , average response time from AgentPerformance
-where  date >= date_sub(date, 7) 
-group by agent name;
 13. average weekly resolution time for each agents 
-select agent name , average resolution time from AgentPerformance
-where  date >= date_sub(date, 7) 
-group by agent name;
 14. Find the number of chat on which they have received a feedback 
-select count(Total Chats) from AgentPerformance where feedback!=0;
+select SUM(TOTAL_CHATS),A_NAME from AGNT_PERFORMANCE WHERE TOTAL_FEED <>0 GROUP BY A_NAME ;
+
 15. Total contribution hour for each and every agents weekly basis 
+select SUM(DURATION),AGENT from AGNT_LOG_REPORT GROUP BY AGENT,WEEKOFYEAR(A_DATE);
+
 select agent , sum(duration)from AgentLoggingReport
 where  date >= date_sub(date, 7) 
 group by agent name;
