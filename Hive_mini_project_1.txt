@@ -24,9 +24,11 @@ Average Rating Double,
 Total Feedback Int
 )Row format delimited 
 fields terminated by ',';
+
 2. Dump the data inside the hdfs in the given schema location.
-load data input '/tmp/AgentLoggingReport.csv' into AgentLoggingReport
+load data inpath '/user/Mini/AgentPerformanceU.csv' into table AGNT_PERFORMANCE;
 load data input '/tmp/AgentPerformance.csv' into AgentPerformance
+
 3. List of all agents' names. 
 select distinct(Agent Name) from AgentPerformance;
 4. Find out agent average rating.
