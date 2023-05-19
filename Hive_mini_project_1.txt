@@ -57,7 +57,11 @@ select AVG_RATING,A_NAME from AGNT_PERFORMANCE WHERE AVG_RATING>4.5;
 select COUNT(TOTAL_FEED),A_NAME from AGNT_PERFORMANCE WHERE AVG_RATING>4.5 GROUP BY A_NAME;
 
 12. average weekly response time for each agent 
+select AVG(AVG_RESPONSE_TIME),A_NAME from AGNT_PERFORMANCE GROUP BY A_NAME,WEEKOFYEAR(A_DATE);
+
 13. average weekly resolution time for each agents 
+select AVG(AVG_RESOLUTION_TIME),A_NAME from AGNT_PERFORMANCE GROUP BY A_NAME,WEEKOFYEAR(A_DATE);
+
 14. Find the number of chat on which they have received a feedback 
 select SUM(TOTAL_CHATS),A_NAME from AGNT_PERFORMANCE WHERE TOTAL_FEED <>0 GROUP BY A_NAME ;
 
