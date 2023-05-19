@@ -45,13 +45,17 @@ select SUM(TOTAL_CHATS),A_NAME from AGNT_PERFORMANCE GROUP BY A_NAME;
 select SUM(TOTAL_FEED),A_NAME from AGNT_PERFORMANCE GROUP BY A_NAME;
 
 8. Agent name who have average rating between 3.5 to 4 
-select Agent Name from AgentPerformance where average rating between 3.5 and 4;
+select AVG_RATING,A_NAME from AGNT_PERFORMANCE WHERE AVG_RATING BETWEEN 3.5 AND 4;
+
 9. Agent name who have rating less than 3.5
-select Agent Name from AgentPerformance where average rating<3.5;
+select AVG_RATING,A_NAME from AGNT_PERFORMANCE WHERE AVG_RATING<3.5;
+
 10. Agent name who have rating more than 4.5 
-select Agent Name from AgentPerformance where average rating>4.5;
+select AVG_RATING,A_NAME from AGNT_PERFORMANCE WHERE AVG_RATING>4.5;
+
 11. How many feedback agents have received more than 4.5 average
-select count(Agent Name) from AgentPerformance where average rating>4.5;
+select COUNT(TOTAL_FEED),A_NAME from AGNT_PERFORMANCE WHERE AVG_RATING<3.5 GROUP BY A_NAME;
+
 12. average weekly response time for each agent 
 select agent name , average response time from AgentPerformance
 where  date >= date_sub(date, 7) 
