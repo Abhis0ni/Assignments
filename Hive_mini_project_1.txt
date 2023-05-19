@@ -26,8 +26,8 @@ FIELDS TERMINATED BY ','
 tblproperties ("skip.header.line.count"="1");
 
 2. Dump the data inside the hdfs in the given schema location.
-load data inpath '/user/Mini/AgentPerformanceU.csv' into table AGNT_PERFORMANCE;
-load data inpath '/user/Mini/AgentLogingReportU.csv' into table AGNT_LOG_REPORT;
+load data inpath '/user/Mini/AgentPerformance.csv' into table AGNT_PERFORMANCE;
+load data inpath '/user/Mini/AgentLogingReport.csv' into table AGNT_LOG_REPORT;
 
 3. List of all agents' names. 
 select distinct(Agent Name) from AgentPerformance;
