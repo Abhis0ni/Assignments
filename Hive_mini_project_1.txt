@@ -1,23 +1,18 @@
-This is a real time dataset of the ineuron technical consultant team. You have to perform hive analysis on this given dataset.
-
-Download Dataset 1 - https://drive.google.com/file/d/1WrG-9qv6atP-W3P_-gYln1hHyFKRKMHP/view
-
-Download Dataset 2 - https://drive.google.com/file/d/1-JIPCZ34dyN6k9CqJa-Y8yxIGq6vTVXU/view
-
-Note: both files are csv files. 
+This is a real time dataset of the ineuron technical consultant team. You have to perform hive analysis on this given dataset. 
 
 1. Create a schema based on the given dataset
-Create database Hive_1;
-Create Table AgentLoggingReport(
-SL NO Int,
-Agent String,
-Date Date,
-Login Time Timestamp,
-Logout Time Timestamp,
-Duration Timestamp
-)
-row format delimited 
-fields terminated by ',';
+CREATE TABLE AGNT_PERFORMANCE
+(SL_NO INT,
+A_DATE DATE,
+A_NAME STRING,
+TOTAL_CHATS INT,
+AVG_RESPONSE_TIME STRING,
+AVG_RESOLUTION_TIME STRING,
+AVG_RATING DOUBLE,
+TOTAL_FEED INT)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+tblproperties ("skip.header.line.count"="1");
 
 Create Table AgentPerformance(
 SL NO Int,
