@@ -39,7 +39,8 @@ select AVG(AVG_RATING),A_NAME from AGNT_PERFORMANCE GROUP BY A_NAME;
 select COUNT(A_DATE),AGENT from AGNT_LOG_REPORT GROUP BY AGENT;
 
 6. Total query that each agent have taken 
-select sum(TotalChats),Agent Name from AgentPerformance group by Agent Name;
+select SUM(TOTAL_CHATS),A_NAME from AGNT_PERFORMANCE GROUP BY A_NAME;
+
 7. Total Feedback that each agent have received 
 select sum(Feedback),Agent Name from AgentPerformance group by Agent Name;
 8. Agent name who have average rating between 3.5 to 4 
