@@ -30,13 +30,14 @@ load data inpath '/user/Mini/AgentPerformance.csv' into table AGNT_PERFORMANCE;
 load data inpath '/user/Mini/AgentLogingReport.csv' into table AGNT_LOG_REPORT;
 
 3. List of all agents' names. 
-select distinct(Agent Name) from AgentPerformance;
+select DISTINCT(A_NAME) from AGNT_PERFORMANCE;
+
 4. Find out agent average rating.
-select avg(average rating),agent name from AgentPerformance
-group by agent name;
+select AVG(AVG_RATING),A_NAME from AGNT_PERFORMANCE GROUP BY A_NAME;
+
 5. Total working days for each agents 
-select agent, (max(Date) - min(Date)) as working_days from AgentLoggingReport
-group by agent;
+select COUNT(A_DATE),AGENT from AGNT_LOG_REPORT GROUP BY AGENT;
+
 6. Total query that each agent have taken 
 select sum(TotalChats),Agent Name from AgentPerformance group by Agent Name;
 7. Total Feedback that each agent have received 
