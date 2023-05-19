@@ -14,20 +14,20 @@ ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ','
 tblproperties ("skip.header.line.count"="1");
 
-Create Table AgentPerformance(
-SL NO Int,
-Agent Name String,
-Total Chats Int,
-Average Response Time Timestamp,
-Average Resolution Time Timestamp,
-Average Rating Double,
-Total Feedback Int
-)Row format delimited 
-fields terminated by ',';
+CREATE TABLE AGNT_LOG_REPORT
+(SL_NO INT,
+AGENT STRING,
+A_DATE DATE,
+LOG_TIME STRING,
+LOG_OUT STRING,
+DURATION STRING)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+tblproperties ("skip.header.line.count"="1");
 
 2. Dump the data inside the hdfs in the given schema location.
 load data inpath '/user/Mini/AgentPerformanceU.csv' into table AGNT_PERFORMANCE;
-load data input '/tmp/AgentPerformance.csv' into AgentPerformance
+load data inpath '/user/Mini/AgentLogingReportU.csv' into table AGNT_LOG_REPORT;
 
 3. List of all agents' names. 
 select distinct(Agent Name) from AgentPerformance;
