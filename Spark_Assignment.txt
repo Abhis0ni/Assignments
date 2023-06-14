@@ -90,3 +90,32 @@ only showing top 20 rows
 244
 >>> dfTimeProvince.count()
 2771
+
+
+b. Describe the data with a describe function.
+>>> dfCase.describe()
+DataFrame[summary: string,  case_id: string, province: string, city: string, infection_case: string, confirmed: string, latitude: string, longitude: string]
+>>> dfRegion.describe()
+DataFrame[summary: string, code: string, province: string, city: string, latitude: string, longitude: string, elementary_school_count: string, kindergarten_count: string, university_count: string, academy_ratio: string, elderly_population_ratio: string, elderly_alone_ratio: string, nursing_home_count: string]
+>>> dfTimeProvince.describe()
+DataFrame[summary: string, date: string, time: string, province: string, confirmed: string, released: string, deceased: string]
+
+
+c. If there is any duplicate value drop it.
+>>> dfCase.dropDuplicates().show()
+>>> dfRegion.dropDuplicates().show()
+>>> dfTimeProvince.dropDuplicates().show()
+
+
+d. Use limit function for showcasing a limited number of records.
+>>> dfCase.limit(10).show()
+>>> dfRegion.limit(10).show()
+>>> dfTimeProvince.limit(10).show()
+
+
+e. If you find the column name is not suitable, change the column name.[optional]
+>>> dfCase.withColumnRenamed("case_id","CASES").show()
+
+
+f. Select the subset of the columns.
+
