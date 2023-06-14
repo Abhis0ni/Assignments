@@ -230,3 +230,61 @@ only showing top 20 rows
 | 1400005|          Incheon|              -|false|     overseas inflow|       68|        -|         -|
 +--------+-----------------+---------------+-----+--------------------+---------+---------+----------+
 only showing top 20 rows
+
+
+k. Use group by on top of province and city column and agg it with sum of confirmed cases
+>>> dfCase.groupBy(["province","city"]).agg(sum("confirmed")).show()
++----------------+---------------+--------------+
+|        province|           city|sum(confirmed)|
++----------------+---------------+--------------+
+|Gyeongsangnam-do|       Jinju-si|             9|
+|           Seoul|        Guro-gu|           139|
+|           Seoul|     Gangnam-gu|            18|
+|         Daejeon|              -|           100|
+|    Jeollabuk-do|from other city|             6|
+|Gyeongsangnam-do|Changnyeong-gun|             7|
+|           Seoul|              -|           561|
+|         Jeju-do|from other city|             1|
+|Gyeongsangbuk-do|              -|           345|
+|Gyeongsangnam-do|   Geochang-gun|            18|
+|Gyeongsangbuk-do|        Gumi-si|            10|
+|         Incheon|from other city|           117|
+|           Busan|              -|            85|
+|           Daegu|         Seo-gu|           124|
+|           Busan|     Suyeong-gu|             5|
+|     Gyeonggi-do|   Uijeongbu-si|            50|
+|           Seoul|     Yongsan-gu|           139|
+|           Daegu|              -|          1705|
+|           Seoul|   Seodaemun-gu|             5|
+|     Gyeonggi-do|    Seongnam-si|            94|
++----------------+---------------+--------------+
+only showing top 20 rows
+
+
+l. For joins we will need one more file.you can use region file. Use different join methods.
+>>> dfCase.join(dfRegion, ['province','city'],how='left').show()
++--------+---------------+--------+-----+--------------------+---------+---------+----------+-----+---------+----------+-----------------------+------------------+----------------+-------------+------------------------+-------------------+------------------+
+|province|           city| case_id|group|      infection_case|confirmed| latitude| longitude| code| latitude| longitude|elementary_school_count|kindergarten_count|university_count|academy_ratio|elderly_population_ratio|elderly_alone_ratio|nursing_home_count|
++--------+---------------+--------+-----+--------------------+---------+---------+----------+-----+---------+----------+-----------------------+------------------+----------------+-------------+------------------------+-------------------+------------------+
+|   Seoul|     Yongsan-gu| 1000001| true|       Itaewon Clubs|      139|37.538621|126.992652|10210|37.532768|126.990021|                     15|                13|               1|         0.68|                   16.87|                6.5|               435|
+|   Seoul|      Gwanak-gu| 1000002| true|             Richway|      119| 37.48208|126.901384|10050| 37.47829|126.951502|                     22|                33|               1|         0.89|                   15.12|                4.9|               909|
+|   Seoul|        Guro-gu| 1000003| true| Guro-gu Call Center|       95|37.508163|126.884387|10070|37.495632| 126.88765|                     26|                34|               3|          1.0|                   16.21|                5.7|               741|
+|   Seoul|   Yangcheon-gu| 1000004| true|Yangcheon Table T...|       43|37.546061|126.874209|10190|37.517189|126.866618|                     30|                43|               0|         2.26|                   13.55|                5.5|               816|
+|   Seoul|      Dobong-gu| 1000005| true|     Day Care Center|       43|37.679422|127.044374|10100|37.668952|127.047082|                     23|                26|               1|         0.95|                   17.89|                7.2|               485|
+|   Seoul|        Guro-gu| 1000006| true|Manmin Central Ch...|       41|37.481059|126.894343|10070|37.495632| 126.88765|                     26|                34|               3|          1.0|                   16.21|                5.7|               741|
+|   Seoul|from other city| 1000007| true|SMR Newly Planted...|       36|        -|         -| null|     null|      null|                   null|              null|            null|         null|                    null|               null|              null|
+|   Seoul|  Dongdaemun-gu| 1000008| true|       Dongan Church|       17|37.592888|127.056766|10110|37.574552|127.039721|                     21|                31|               4|         1.06|                   17.26|                6.7|               832|
+|   Seoul|from other city| 1000009| true|Coupang Logistics...|       25|        -|         -| null|     null|      null|                   null|              null|            null|         null|                    null|               null|              null|
+|   Seoul|      Gwanak-gu| 1000010| true|     Wangsung Church|       30|37.481735|126.930121|10050| 37.47829|126.951502|                     22|                33|               1|         0.89|                   15.12|                4.9|               909|
+|   Seoul|   Eunpyeong-gu| 1000011| true|Eunpyeong St. Mar...|       14| 37.63369|  126.9165|10220|37.603481|126.929173|                     31|                44|               1|         1.09|                    17.0|                6.5|               874|
+|   Seoul|   Seongdong-gu| 1000012| true|    Seongdong-gu APT|       13| 37.55713|  127.0403|10160|37.563277|127.036647|                     21|                30|               2|         0.97|                   14.76|                5.3|               593|
+|   Seoul|      Jongno-gu| 1000013| true|Jongno Community ...|       10| 37.57681|   127.006|10230|37.572999|126.979189|                     13|                17|               3|         1.71|                   18.27|                6.8|               668|
+|   Seoul|     Gangnam-gu| 1000014| true|Samsung Medical C...|        7| 37.48825| 127.08559|10010|37.518421|127.047222|                     33|                38|               0|         4.18|                   13.17|                4.3|              3088|
+|   Seoul|        Jung-gu| 1000015| true|Jung-gu Fashion C...|        7|37.562405|126.984377|10240|37.563988| 126.99753|                     12|                14|               2|         0.94|                   18.42|                7.4|               728|
+|   Seoul|   Seodaemun-gu| 1000016| true|  Yeonana News Class|        5|37.558147|126.943799|10140|37.579428|126.936771|                     19|                25|               6|         1.12|                   16.77|                6.2|               587|
+|   Seoul|      Jongno-gu| 1000017| true|Korea Campus Crus...|        7|37.594782|126.968022|10230|37.572999|126.979189|                     13|                17|               3|         1.71|                   18.27|                6.8|               668|
+|   Seoul|     Gangnam-gu| 1000018| true|Gangnam Yeoksam-d...|        6|        -|         -|10010|37.518421|127.047222|                     33|                38|               0|         4.18|                   13.17|                4.3|              3088|
+|   Seoul|from other city| 1000019| true|Daejeon door-to-d...|        1|        -|         -| null|     null|      null|                   null|              null|            null|         null|                    null|               null|              null|
+|   Seoul|   Geumcheon-gu| 1000020| true|Geumcheon-gu rice...|        6|        -|         -|10080|37.456852|126.895229|                     18|                19|               0|         0.96|                   16.15|                6.7|               475|
++--------+---------------+--------+-----+--------------------+---------+---------+----------+-----+---------+----------+-----------------------+------------------+----------------+-------------+------------------------+-------------------+------------------+
+only showing top 20 rows
