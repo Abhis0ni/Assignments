@@ -288,3 +288,44 @@ l. For joins we will need one more file.you can use region file. Use different j
 |   Seoul|   Geumcheon-gu| 1000020| true|Geumcheon-gu rice...|        6|        -|         -|10080|37.456852|126.895229|                     18|                19|               0|         0.96|                   16.15|                6.7|               475|
 +--------+---------------+--------+-----+--------------------+---------+---------+----------+-----+---------+----------+-----------------------+------------------+----------------+-------------+------------------------+-------------------+------------------+
 only showing top 20 rows
+
+
+
+5. If you want, you can also use SQL with data frames. Let us try to run some SQL on the cases table.
+>>> dfCase.createOrReplaceTempView("TBL_Cases")
+>>> df = spark.sql("select * from TBL_Cases where city='Guro-gu'").show()
++--------+--------+-------+-----+--------------------+---------+---------+----------+
+| case_id|province|   city|group|      infection_case|confirmed| latitude| longitude|
++--------+--------+-------+-----+--------------------+---------+---------+----------+
+| 1000003|   Seoul|Guro-gu| true| Guro-gu Call Center|       95|37.508163|126.884387|
+| 1000006|   Seoul|Guro-gu| true|Manmin Central Ch...|       41|37.481059|126.894343|
+| 1000035|   Seoul|Guro-gu| true|     Daezayeon Korea|        3|37.486837|126.893163|
++--------+--------+-------+-----+--------------------+---------+---------+----------+
+
+6. Create Spark UDFs
+>>> dfCase.select(col("province"),col("city"),col("confirmed"),Casehighlow(col("confirmed"))).show()
++--------+---------------+---------+----------------------+
+|province|           city|confirmed|Casehighlow(confirmed)|
++--------+---------------+---------+----------------------+
+|   Seoul|     Yongsan-gu|      139|                  HIGH|
+|   Seoul|      Gwanak-gu|      119|                  HIGH|
+|   Seoul|        Guro-gu|       95|                  HIGH|
+|   Seoul|   Yangcheon-gu|       43|                   LOW|
+|   Seoul|      Dobong-gu|       43|                   LOW|
+|   Seoul|        Guro-gu|       41|                   LOW|
+|   Seoul|from other city|       36|                   LOW|
+|   Seoul|  Dongdaemun-gu|       17|                   LOW|
+|   Seoul|from other city|       25|                   LOW|
+|   Seoul|      Gwanak-gu|       30|                   LOW|
+|   Seoul|   Eunpyeong-gu|       14|                   LOW|
+|   Seoul|   Seongdong-gu|       13|                   LOW|
+|   Seoul|      Jongno-gu|       10|                   LOW|
+|   Seoul|     Gangnam-gu|        7|                   LOW|
+|   Seoul|        Jung-gu|        7|                   LOW|
+|   Seoul|   Seodaemun-gu|        5|                   LOW|
+|   Seoul|      Jongno-gu|        7|                   LOW|
+|   Seoul|     Gangnam-gu|        6|                   LOW|
+|   Seoul|from other city|        1|                   LOW|
+|   Seoul|   Geumcheon-gu|        6|                   LOW|
++--------+---------------+---------+----------------------+
+only showing top 20 rows
