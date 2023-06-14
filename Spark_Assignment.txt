@@ -118,4 +118,30 @@ e. If you find the column name is not suitable, change the column name.[optional
 
 
 f. Select the subset of the columns.
+>>> dfTimeProvince.select("province","confirmed").show()
++-----------------+---------+
+|         province|confirmed|
++-----------------+---------+
+|            Seoul|        0|
+|            Busan|        0|
+|            Daegu|        0|
+|          Incheon|        1|
+|          Gwangju|        0|
+|          Daejeon|        0|
+|            Ulsan|        0|
+|           Sejong|        0|
+|      Gyeonggi-do|        0|
+|       Gangwon-do|        0|
+|Chungcheongbuk-do|        0|
+|Chungcheongnam-do|        0|
+|     Jeollabuk-do|        0|
+|     Jeollanam-do|        0|
+| Gyeongsangbuk-do|        0|
+| Gyeongsangnam-do|        0|
+|          Jeju-do|        0|
+|            Seoul|        0|
+|            Busan|        0|
+|            Daegu|        0|
++-----------------+---------+
 
+g. If there is any null value, fill it with any random value or drop it.
