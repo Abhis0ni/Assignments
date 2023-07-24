@@ -1,7 +1,7 @@
-What is Google Cloud Platform Document AI?
-What are the database services offered by Google's cloud platform?
-What is the difference between cloud search and cloud identity? Prepare a list of the applications for cloud search and cloud identity.
-What is conversational AI, and how does it work? List and Explain various GCP Conversation AI services.
-Give an example of GCP's Media Translation service.
-Explain how to use Google Cloud Platform's cloud logging and monitoring features.
-How to use Cloud Identity to generate and manage user IDs in the cloud?
+How to manage a single network across several projects from a central location.
+Explain how migration waves can be used to migrate a large number of computers at once.
+How do I construct subnets and what are the firewall rules?
+Explain the concept of a container in the Google Cloud Platform.
+What are the steps to create several VPC Networks?
+Explain what is Kubernetes? How to orchestrate it on the cloud?
+Use Spinnaker and the Kubernetes engine to implement Continuous Delivery.
